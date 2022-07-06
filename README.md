@@ -2,11 +2,11 @@
 
 An application for the farmers on the PA market platform, the application's purpose is to provide the farmers with administrative power over their profiles as well as provide data analytics in the future
 
-## User Stories
-# 1. The user must be able to process, accept and or deny any "orders" from the PA marketing platform
-# 2. The user must be able to monitor and administrator over their inventory
-# 3. The user must be able to edit most elements of their profile on the PA marketing platform
-# 4. The user must be able to assess any feedback given to their farm and products obtained from the PA marketing platform
+## User Stories 
+ 1. The user must be able to process, accept and or deny any "orders" from the PA marketing platform
+ 2. The user must be able to monitor and administrator over their inventory
+ 3. The user must be able to edit most elements of their profile on the PA marketing platform
+ 4. The user must be able to assess any feedback given to their farm and products obtained from the PA marketing platform
 
 ## Key Features 
 # 1. Home page - Access to current, and past "orders" as well as the ability to change their state
