@@ -1,6 +1,7 @@
 // the first page displayed
 import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
+import 'package:pa_market_farmer/pages/home_page.dart';
 import 'package:pa_market_farmer/pages/inventory_page.dart';
 
 class InitialPage extends StatefulWidget {
@@ -22,13 +23,28 @@ class _InitialPageState extends State<InitialPage> {
       ),
       backgroundColor: primaryApplicationBackgroundColor,
       body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const Inventory())
-              );
-            },
-            child: const Text("Inventory")
-        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Inventory())
+                      );
+                    },
+                    child: const Text("Inventory")
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomePage())
+                      );
+                    },
+                    child: const Text("View Home")
+                ),
+              ],
+            )
+          ],
+        )
       ),
     );
   }
