@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
+import 'package:pa_market_farmer/custom_objects/driver.dart';
+import 'package:pa_market_farmer/pages/driver_page.dart';
 
 class ViewOrder extends StatefulWidget {
   final String name;
@@ -8,9 +11,10 @@ class ViewOrder extends StatefulWidget {
   final String networkUrl;
   final String status;
   final String cost;
+  final Driver driver;
   final String deliveryAddress;
   const ViewOrder({Key? key,
-    required this.cost, required this.orderNumber, required this.networkUrl,
+    required this.cost, required this.orderNumber, required this.networkUrl, required this.driver,
     required this.amount, required this.status, required this.name, required this.deliveryAddress
   }) : super(key: key);
 
@@ -82,6 +86,19 @@ class _ViewOrderState extends State<ViewOrder> {
                 //change the button color to show status of completeness
                 Expanded(child: ElevatedButton(
                     onPressed: () {
+
+                      DateTime timestamp = DateTime.now();
+                      String formatedTimeStamp = DateFormat('kk:mm:ss').format(timestamp);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverPage(
+                          phoneNumber: widget.driver.phoneNumber, name: widget.driver.name,
+                          orderNumber: widget.orderNumber, addy: widget.deliveryAddress,
+                          completedDeliveries: widget.driver.numberOfSuccessfulDeliveries, failedDeliveries: widget.driver.numberFailedDeliveries,
+                          orderAmount: widget.amount.toString(), orderCost: widget.cost,
+                          orderName: widget.name, timeStamp: formatedTimeStamp,
+                          type: widget.driver.storageType
+                      ))
+                      );
+
                       //check status of order, if complete green if not maybe amber, if denied red
                       if (widget.status.contains('complete')){
                         //order is complete
@@ -91,6 +108,7 @@ class _ViewOrderState extends State<ViewOrder> {
                         }else{
                           //change the color
                           buttonColor = Colors.green;
+
                         }
                       } else if (widget.status.contains('in progress')){
                         // we color the button amber

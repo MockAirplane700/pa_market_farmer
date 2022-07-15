@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(builder: (context)=> ViewOrder(
                               cost: _list[index].cost, orderNumber: _list[index].orderNumber,
                               networkUrl: _list[index].networkUrl, amount: _list[index].amount,
-                              status: _list[index].status, name: _list[index].name,
+                              status: _list[index].status, name: _list[index].name, driver: _list[index].driver,
                               deliveryAddress: _list[index].deliveryAddress
                           ))
                       );
