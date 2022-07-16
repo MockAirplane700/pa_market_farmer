@@ -7,3 +7,5 @@ const Color primaryAppBarColor = Colors.white;
 const Color primaryThemeDataColor = Colors.black;
 // The color of the application's background
 const Color primaryApplicationBackgroundColor = Colors.white;
+//color of the navigation drawer header
+const Color primaryNavDrawerColor = Colors.white;
