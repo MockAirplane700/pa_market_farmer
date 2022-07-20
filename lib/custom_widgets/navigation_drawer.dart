@@ -611,10 +611,10 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
           //Feedback from users and adding new stock
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: ElevatedButton(
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [Expanded(child: ElevatedButton(
                     onPressed: () {
                       //open dialog box
                       showDialog(context: context,
@@ -632,118 +632,118 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
                       );
                     },
                     child: const Text('User Feedback')
-                )),
-                Expanded(child: ElevatedButton(
-                    onPressed: () {
-                      //open dialog box
-                      showDialog(context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Add product'),
-                            content:  Form(
-                                key: _formKey,
-                                child: Column(
-                                  //name description network cost stock
-                                  children: [
-                                    //Add product name
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Cannot add an empty field. Thank you';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        productName = value;
-                                      },
-                                      decoration: const InputDecoration(
-                                        hintText: 'Product Name',
-                                      ),
-                                    ),
-                                    //Add product description
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Cannot add an empty field. Thank you';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        productDescription = value;
-                                      },
-                                      decoration: const InputDecoration(
-                                        hintText: 'Product description',
-                                      ),
-                                    ),
-                                    //Add cost
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Cannot add an empty field. Thank you';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        cost = value;
-                                      },
-                                      decoration: const InputDecoration(
-                                        hintText: 'Product cost',
-                                      ),
-                                    ),
-                                    //Add stock
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Cannot add an empty date, please add relevant hours. Thank you';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        stock = value;
-                                      },
-                                      decoration: const InputDecoration(
-                                        hintText: 'How much do you have in stock',
-                                      ),
-                                    ),
-                                    // the submit or cancel button
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(child: TextButton(
-                                            onPressed: () {
-                                              //operation cancelled
-                                              Navigator.pop(context, 'Cancel');
-                                            },
-                                            child: const Text('Cancel')
-                                        )),
-                                        Expanded(child: TextButton(
-                                            onPressed: () {
-                                              //operation cancelled
-                                              if (_formKey.currentState!.validate()) {
-                                                //todo: make necessary changes
-                                                // FarmerDetails.changeFirstAndLastName(farmer.firstName,string);
-                                                Navigator.pop(context, 'Ok');
-                                              }
-                                            },
-                                            child: const Text('Submit')
-                                        )),
-                                      ],
-                                    )
-                                  ],
-                                )
-                            ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Ok');
-                                  },
-                                  child: const Text('Ok')
-                              )
-                            ],
-                          )
-                      );
-                    },
-                    child: const Text('Add product')
-                )),
+                )),]),
+               Row(mainAxisAlignment: MainAxisAlignment.center,children: [ Expanded(child: ElevatedButton(
+                   onPressed: () {
+                     //open dialog box
+                     showDialog(context: context,
+                         builder: (context) => AlertDialog(
+                           title: const Text('Add product'),
+                           content:  Form(
+                               key: _formKey,
+                               child: Column(
+                                 //name description network cost stock
+                                 children: [
+                                   //Add product name
+                                   TextFormField(
+                                     validator: (value) {
+                                       if (value == null || value.isEmpty) {
+                                         return 'Cannot add an empty field. Thank you';
+                                       }
+                                       return null;
+                                     },
+                                     onChanged: (value) {
+                                       productName = value;
+                                     },
+                                     decoration: const InputDecoration(
+                                       hintText: 'Product Name',
+                                     ),
+                                   ),
+                                   //Add product description
+                                   TextFormField(
+                                     validator: (value) {
+                                       if (value == null || value.isEmpty) {
+                                         return 'Cannot add an empty field. Thank you';
+                                       }
+                                       return null;
+                                     },
+                                     onChanged: (value) {
+                                       productDescription = value;
+                                     },
+                                     decoration: const InputDecoration(
+                                       hintText: 'Product description',
+                                     ),
+                                   ),
+                                   //Add cost
+                                   TextFormField(
+                                     validator: (value) {
+                                       if (value == null || value.isEmpty) {
+                                         return 'Cannot add an empty field. Thank you';
+                                       }
+                                       return null;
+                                     },
+                                     onChanged: (value) {
+                                       cost = value;
+                                     },
+                                     decoration: const InputDecoration(
+                                       hintText: 'Product cost',
+                                     ),
+                                   ),
+                                   //Add stock
+                                   TextFormField(
+                                     validator: (value) {
+                                       if (value == null || value.isEmpty) {
+                                         return 'Cannot add an empty date, please add relevant hours. Thank you';
+                                       }
+                                       return null;
+                                     },
+                                     onChanged: (value) {
+                                       stock = value;
+                                     },
+                                     decoration: const InputDecoration(
+                                       hintText: 'How much do you have in stock',
+                                     ),
+                                   ),
+                                   // the submit or cancel button
+                                   Row(
+                                     mainAxisAlignment: MainAxisAlignment.center,
+                                     children: [
+                                       Expanded(child: TextButton(
+                                           onPressed: () {
+                                             //operation cancelled
+                                             Navigator.pop(context, 'Cancel');
+                                           },
+                                           child: const Text('Cancel')
+                                       )),
+                                       Expanded(child: TextButton(
+                                           onPressed: () {
+                                             //operation cancelled
+                                             if (_formKey.currentState!.validate()) {
+                                               //todo: make necessary changes
+                                               // FarmerDetails.changeFirstAndLastName(farmer.firstName,string);
+                                               Navigator.pop(context, 'Ok');
+                                             }
+                                           },
+                                           child: const Text('Submit')
+                                       )),
+                                     ],
+                                   )
+                                 ],
+                               )
+                           ),
+                           actions: [
+                             TextButton(
+                                 onPressed: () {
+                                   Navigator.pop(context, 'Ok');
+                                 },
+                                 child: const Text('Ok')
+                             )
+                           ],
+                         )
+                     );
+                   },
+                   child: const Text('Add product')
+               ))],),
               ],
             ),
           )
