@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
 import 'package:pa_market_farmer/pages/home_page.dart';
 import 'package:pa_market_farmer/pages/inventory_page.dart';
+import 'package:pa_market_farmer/pages/login.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);
@@ -23,28 +24,14 @@ class _InitialPageState extends State<InitialPage> {
       ),
       backgroundColor: primaryApplicationBackgroundColor,
       body: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Inventory())
-                      );
-                    },
-                    child: const Text("Inventory")
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomePage())
-                      );
-                    },
-                    child: const Text("View Home")
-                ),
-              ],
-            )
-          ],
-        )
+      //login_signup_pages
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const LogIn())
+              );
+            },
+            child: const Text("Login-sign up")
+        ),
       ),
     );
   }
