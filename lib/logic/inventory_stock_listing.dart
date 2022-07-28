@@ -1,3 +1,4 @@
+
 import 'package:pa_market_farmer/custom_objects/inventory_item.dart';
 
 class InventoryListing {
@@ -13,4 +14,4 @@ class InventoryListing {
   static List<InventoryItemObject> getInventoryList() {
     return _list;
   }
-}
+
