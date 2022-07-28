@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
 import 'package:pa_market_farmer/custom_objects/driver.dart';
 import 'package:pa_market_farmer/pages/driver_page.dart';
+
+import 'package:pa_market_farmer/custom_objects/constants.dart';
+
 
 class ViewOrder extends StatefulWidget {
   final String name;
@@ -11,10 +15,11 @@ class ViewOrder extends StatefulWidget {
   final String networkUrl;
   final String status;
   final String cost;
-  final Driver driver;
+
   final String deliveryAddress;
   const ViewOrder({Key? key,
-    required this.cost, required this.orderNumber, required this.networkUrl, required this.driver,
+    required this.cost, required this.orderNumber, required this.networkUrl,
+
     required this.amount, required this.status, required this.name, required this.deliveryAddress
   }) : super(key: key);
 
@@ -87,6 +92,7 @@ class _ViewOrderState extends State<ViewOrder> {
                 Expanded(child: ElevatedButton(
                     onPressed: () {
 
+
                       DateTime timestamp = DateTime.now();
                       String formatedTimeStamp = DateFormat('kk:mm:ss').format(timestamp);
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverPage(
@@ -108,7 +114,6 @@ class _ViewOrderState extends State<ViewOrder> {
                         }else{
                           //change the color
                           buttonColor = Colors.green;
-
                         }
                       } else if (widget.status.contains('in progress')){
                         // we color the button amber

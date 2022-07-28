@@ -1,14 +1,15 @@
 class Product {
-  //Take note of Inventory Item object
-  final String name;
-  final String description;
-  final String networkImage;
-  final String cost;
-  final String stock;
-//name description network cost stock
+
+  final String productId;
+  final String productName;
+  final String avaliable;
+  final String photoUrl;
+  final String priceUnit;
+  final String harvestDate;
+
   Product({
-    required this.name, required this.description,
-    required this.cost, required this.stock,
-    required this.networkImage
+    required this.priceUnit, required this.harvestDate, required this.photoUrl,
+    required this.avaliable, required this.productId, required this.productName
+
 });
 }
