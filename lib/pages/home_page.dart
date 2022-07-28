@@ -40,14 +40,44 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: primaryApplicationBackgroundColor,
       body: Center(
-        child: StreamBuilder(
-            builder: (context, snapshot) {
-              Farm object = snapshot.data as Farm;
-              return Text(object.location.toString());
+        child: ListView.builder(
+            itemBuilder: (context, index) {
+              //check if list is empty
+              if(_list.isEmpty) {
+                return const Center(child: Text('No orders present'),);
+              }else{
+                return Card(
+                  child: ListTile(
+                    leading: Padding(padding:const  EdgeInsets.all(5.0),child: Image.network(_list[index].networkUrl),),
+                    title: Text('Order number: ${_list[index].orderNumber}', style: const TextStyle(color: primaryTextBackgroundColor),),
+                    subtitle: Text('Cost: \$${_list[index].cost}', style: const TextStyle(color: primaryTextBackgroundColor),),
+                    onTap: () {
+                      //go to the home viewing page for each order
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=> ViewOrder(
+                            driver: _list[index].driver,
+                              cost: _list[index].cost, orderNumber: _list[index].orderNumber,
+                              networkUrl: _list[index].networkUrl, amount: _list[index].amount,
+                              status: _list[index].status, name: _list[index].name,
+                              deliveryAddress: _list[index].deliveryAddress
+                          ))
+                      );
+                    },
+                  ),
+                );
+              }
             },
-          stream: farm.asStream(),
+          itemCount: _list.length,
         ),
-        // child: Text('Response: ${farm.toString()}'),
+
+        // child: StreamBuilder(
+        //     builder: (context, snapshot) {
+        //       Farm object = snapshot.data as Farm;
+        //       return Text(object.location.toString());
+        //     },
+        //   stream: farm.asStream(),
+        // ),
+
         // child: ListView.builder(
         //     itemBuilder: (context, index) {
         //       //check if list is empty

@@ -9,11 +9,12 @@ class Order {
   final String status;
   final String deliveryAddress;
   final String cost;
+  final Driver driver;
 
 
   Order({
     required this.name, required this.status,
-    required this.amount, required this.deliveryAddress,
+    required this.amount, required this.deliveryAddress, required this.driver,
     required this.networkUrl, required this.orderNumber, required this.cost
 });
 }

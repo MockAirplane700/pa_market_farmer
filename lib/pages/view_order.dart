@@ -15,12 +15,14 @@ class ViewOrder extends StatefulWidget {
   final String networkUrl;
   final String status;
   final String cost;
+  final Driver driver;
 
   final String deliveryAddress;
   const ViewOrder({Key? key,
     required this.cost, required this.orderNumber, required this.networkUrl,
 
-    required this.amount, required this.status, required this.name, required this.deliveryAddress
+    required this.amount, required this.status, required this.name, required this.deliveryAddress,
+    required this.driver
   }) : super(key: key);
 
   @override
