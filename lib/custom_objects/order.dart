@@ -1,3 +1,6 @@
+
+import 'package:pa_market_farmer/custom_objects/driver.dart';
+
 class Order {
   final String name;
   final String orderNumber;
@@ -6,6 +9,7 @@ class Order {
   final String status;
   final String deliveryAddress;
   final String cost;
+
 
   Order({
     required this.name, required this.status,
