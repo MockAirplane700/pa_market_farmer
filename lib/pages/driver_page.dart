@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_search_delegate.dart';
+import 'package:pa_market_farmer/custom_widgets/navigation_drawer.dart';
 
 class DriverPage extends StatefulWidget {
   final String name;
@@ -33,6 +35,14 @@ class _DriverPageState extends State<DriverPage> {
       appBar: AppBar(
         title: const Text('Driver', style: TextStyle(color: primaryTextBackgroundColor),),
         backgroundColor: primaryAppBarColor,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
+            icon: const Icon(Icons.search)
+          )
+        ],
         iconTheme: const IconThemeData(color: primaryThemeDataColor),
       ),
       backgroundColor: primaryApplicationBackgroundColor,

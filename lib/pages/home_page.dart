@@ -3,6 +3,9 @@ import 'package:pa_market_farmer/custom_objects/constants.dart';
 
 import 'package:pa_market_farmer/custom_objects/farm.dart';
 import 'package:pa_market_farmer/custom_objects/order.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_navigation_bar.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_search_delegate.dart';
+import 'package:pa_market_farmer/custom_widgets/navigation_drawer.dart';
 import 'package:pa_market_farmer/logic/Orders_listing.dart';
 import 'package:pa_market_farmer/logic/proccessed%20data.dart';
 
@@ -36,9 +39,19 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home', style: TextStyle(color: primaryTextBackgroundColor),),
         backgroundColor: primaryAppBarColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              icon: const Icon(Icons.search)
+          )
+        ],
         iconTheme: const IconThemeData(color: primaryThemeDataColor),
       ),
       backgroundColor: primaryApplicationBackgroundColor,
+      drawer: const CustomNavigationDrawer(),
+      bottomNavigationBar: const CustomBottomNavigationBar(selectedIndex: 1),
       body: Center(
         child: ListView.builder(
             itemBuilder: (context, index) {

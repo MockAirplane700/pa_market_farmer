@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
 import 'package:pa_market_farmer/custom_objects/inventory_item.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_navigation_bar.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_search_delegate.dart';
+import 'package:pa_market_farmer/custom_widgets/navigation_drawer.dart';
 import 'package:pa_market_farmer/logic/inventory_stock_listing.dart';
 import 'package:pa_market_farmer/pages/inventory_item_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -23,9 +26,19 @@ class _InventoryState extends State<Inventory> {
         title: const Text("Inventory", style: TextStyle(color: primaryTextBackgroundColor),),
         iconTheme: const IconThemeData(color: primaryThemeDataColor),
         backgroundColor: primaryAppBarColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              icon: const Icon(Icons.search)
+          )
+        ],
         elevation: 0,
       ),
       backgroundColor: primaryApplicationBackgroundColor,
+      drawer: const CustomNavigationDrawer(),
+      bottomNavigationBar: const CustomBottomNavigationBar(selectedIndex: 0),
       body: Center(
         child: ListView.builder(
             itemBuilder: (context, index) {

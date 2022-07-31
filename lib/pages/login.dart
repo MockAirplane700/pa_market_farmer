@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
+import 'package:pa_market_farmer/pages/home_page.dart';
 import 'package:pa_market_farmer/pages/sign_up.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({Key? key}) : super(key: key);
+class CustomLogIn extends StatefulWidget {
+  const CustomLogIn({Key? key}) : super(key: key);
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<CustomLogIn> createState() => _CustomLogInState();
 }
 
-class _LogInState extends State<LogIn> {
+class _CustomLogInState extends State<CustomLogIn> {
   final _key = GlobalKey<FormState>();
-
+  bool obscure = true;
+  String email = '';
+  String password = '';
   // Future<void> _incrementCounter() async {
   //   setState(() {
   //
@@ -28,9 +31,7 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    String email = '';
-    String password = '';
-    bool obscure = true;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login', style: TextStyle(color: primaryTextBackgroundColor),),
@@ -91,10 +92,17 @@ class _LogInState extends State<LogIn> {
                     )),
                     TextButton(
                         onPressed: () {
-                          setState(() {
-                            obscure = false;
-                          });
-                          obscure = false;
+                         if (obscure == true) {
+                           setState(() {
+                             obscure = false;
+                           });
+                         }
+
+                         if (obscure == false) {
+                           setState(() {
+                             obscure = true;
+                           });
+                         }
                         },
                         child: const Text('Show', style: TextStyle(color: primaryTextBackgroundColor),)
                     )
@@ -115,6 +123,7 @@ class _LogInState extends State<LogIn> {
                         ElevatedButton(
                             onPressed: () {
                               //todo: login
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomePage()));
                             },
                             child: const Text('Login')
                         )

@@ -34,7 +34,8 @@ class ConstantFunctions {
     /// -----------------------------------------
 
     for (var element in list) {
-        var jsonObject = json.decode(element);
+      //todo: consider not using json since element is the type internalHashMap<String,dynamic>
+        var jsonObject = json.decode(element.toString());
         products.add(Product(
             priceUnit: jsonObject['priceUnit'], harvestDate: jsonObject['harvestDate'],
             photoUrl: jsonObject['photoUrl'], avaliable: jsonObject['available'],

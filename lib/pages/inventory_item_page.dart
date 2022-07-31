@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_search_delegate.dart';
+import 'package:pa_market_farmer/custom_widgets/navigation_drawer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class InventoryItem extends StatefulWidget {
@@ -22,6 +24,14 @@ class _InventoryItemState extends State<InventoryItem> {
         title: const Text('Inventory item', style: TextStyle(color: primaryTextBackgroundColor),),
         backgroundColor: primaryAppBarColor,
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              icon: const Icon(Icons.search)
+          )
+        ],
         iconTheme: const IconThemeData(color: primaryThemeDataColor),
       ),
       backgroundColor: primaryApplicationBackgroundColor,
@@ -54,19 +64,19 @@ class _InventoryItemState extends State<InventoryItem> {
             ),
             SizedBox(height: MediaQuery.of(context).size.height/50,),
             //Second row holds the buttons to add new things to the stock as well as to remove stock as well as modify stock
-            Row(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ElevatedButton(
+                Row(children: [Expanded(child: ElevatedButton(
                     onPressed: () {
                       //open dialog box that has a form that takes the required stuff
                       showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Add to inventory', style: TextStyle(color: primaryTextBackgroundColor),),
+                            title: const Text('Add to inventory', style: TextStyle(color: primaryTextBackgroundColor),),
                             content: Form(
-                              key: _formKey,
+                                key: _formKey,
                                 child: Column(
                                   children: [
                                     //name
@@ -94,7 +104,7 @@ class _InventoryItemState extends State<InventoryItem> {
 
                                           //leave a snack bar and or check mark to show success and relevant one when failed
                                           ScaffoldMessenger.of(context).showSnackBar(
-                                            const SnackBar(content:Text('Item has been added'))
+                                              const SnackBar(content:Text('Item has been added'))
                                           );
                                           //exit from dialog
                                           Navigator.pop(context,'');
@@ -121,15 +131,16 @@ class _InventoryItemState extends State<InventoryItem> {
                       );
                     },
                     child: const Text('Add',style: TextStyle(color: primaryTextBackgroundColor),)
-                ),
+                ),)],),
                 SizedBox(width: MediaQuery.of(context).size.width/5,),
-                ElevatedButton(
+                Row(children: [Expanded(child: ElevatedButton(
                     onPressed: () {
                       //open dialog box that has a form that takes the required stuff
                       showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                             title: const Text('Add to inventory', style: TextStyle(color: primaryTextBackgroundColor),),
+                            //todo: call search delegate
                             content: const Text('Form to fill out the required stuff') ,
                             actions: [
                               TextButton(
@@ -148,7 +159,7 @@ class _InventoryItemState extends State<InventoryItem> {
                       );
                     },
                     child: const Text('Remove',style: TextStyle(color: primaryTextBackgroundColor),)
-                )
+                ),)],)
               ],
             )
           ],

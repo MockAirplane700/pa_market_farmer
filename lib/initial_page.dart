@@ -48,7 +48,7 @@ class _InitialPageState extends State<InitialPage> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const LogIn())
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const CustomLogIn())
                       );
                     },
                     child: const Text("Login")

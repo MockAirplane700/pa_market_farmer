@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pa_market_farmer/custom_objects/constants.dart';
 import 'package:pa_market_farmer/custom_objects/driver.dart';
+import 'package:pa_market_farmer/custom_widgets/custom_search_delegate.dart';
+import 'package:pa_market_farmer/custom_widgets/navigation_drawer.dart';
 import 'package:pa_market_farmer/pages/driver_page.dart';
 
-import 'package:pa_market_farmer/custom_objects/constants.dart';
 
 
 class ViewOrder extends StatefulWidget {
@@ -33,17 +34,27 @@ class _ViewOrderState extends State<ViewOrder> {
   Color buttonColor = Colors.green;
   @override
   Widget build(BuildContext context) {
-    if (widget.status.contains('complete')){
-      buttonColor = Colors.green;
-    }else if (widget.status.contains('in progress')){
-      buttonColor = Colors.amber;
-    }else{
-      buttonColor = Colors.red;
-    }//end if-else
+    setState(() {
+      if (widget.status.contains('complete')){
+        buttonColor = Colors.green;
+      }else if (widget.status.contains('in progress')){
+        buttonColor = Colors.amber;
+      }else{
+        buttonColor = Colors.red;
+      }//end if-else
+    });
     return Scaffold(
       appBar: AppBar(
         title:  Text('Order: ${widget.orderNumber}', style: const TextStyle(color: primaryTextBackgroundColor),),
         backgroundColor: primaryAppBarColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              icon: const Icon(Icons.search)
+          )
+        ],
         iconTheme: const IconThemeData(color: primaryThemeDataColor),
       ),
       backgroundColor: primaryApplicationBackgroundColor,
@@ -67,24 +78,38 @@ class _ViewOrderState extends State<ViewOrder> {
               ],
             ),
             //Holds two buttons either accept the order or deny it
-            Row(
+            Column(
               children: [
-                Expanded(child: ElevatedButton(
-                  onPressed: () {
-                    //accept the order
-                    buttonColor = Colors.amber;
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order accepted')));
-                  },
-                  child: const Text('Accept Order'),
-                )),
-                Expanded(child: ElevatedButton(
-                  onPressed: () {
-                    //accept the order
-                    buttonColor = Colors.red;
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order has been denied and cancelled')));
-                  },
-                  child: const Text('Cancel Order'),
-                ))
+                Row(
+                  children: [
+                    Expanded(child: ElevatedButton(
+                      onPressed: () {
+                        //accept the order
+                        setState(() {
+                          buttonColor = Colors.amber;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order accepted')));
+                      },
+                      child: const Text('Accept Order'),
+                    )),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(child: ElevatedButton(
+                      onPressed: () {
+                        //accept the order
+                        setState(() {
+                          buttonColor = Colors.red;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order has been denied and cancelled')));
+                      },
+                      child: const Text('Cancel Order'),
+                    )),
+                  ],
+                )
               ],
             ),
             //Last button gives the option to list the order as complete
@@ -115,14 +140,23 @@ class _ViewOrderState extends State<ViewOrder> {
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Order is already complete')));
                         }else{
                           //change the color
-                          buttonColor = Colors.green;
+                          setState(() {
+                            buttonColor = Colors.green;
+                          });
+
                         }
                       } else if (widget.status.contains('in progress')){
                         // we color the button amber
-                        buttonColor = Colors.amber;
+                        setState(() {
+                          buttonColor = Colors.amber;
+                        });
+
                       }else{
                         //it has been cancelled hence the button is red
-                        buttonColor = Colors.red;
+                        setState(() {
+                          buttonColor = Colors.red;
+                        });
+
                       }
                     },
                   style: ElevatedButton.styleFrom(
